@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="de" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="de" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="de" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="de" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="de" class="no-js"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="generator" content="TYPO3 4.5 CMS">
+	<meta name="language" content="de">
+	<meta http-equiv="imagetoolbar" content="false">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="robots" content="index, follow">
+	<title>TEST</title>
+	<meta name="title" content="TEST" />
+	
+	<style type="text/css">
+	html {
+		background: url(img/bg-lowres.jpg) no-repeat center center fixed;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+	}
+	
+	#content {
+		position: absolute;
+		top: 100px;
+		left: 50px; 
+		width: 300px;
+		height: 500px;
+		color: #fff;
+		padding: 20px;
+		
+		/* Fallback for web browsers that doesn't support RGBa */
+		background: rgb(255, 0, 155) transparent;
+		/* RGBa with 0.4 opacity */
+		background: rgba(255, 0, 255, 0.4);
+		/* For IE 5.5 - 7*/
+		filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99ff00ff, endColorstr=#99ff00ff);
+		/* For IE 8*/
+		-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99ff00ff, endColorstr=#99ff00ff)"
+	}
+	
+	#content h1, #content p {
+		display: block;
+	}
+	
+	/* Version mit bgwrapper */
+	#bgwrapper {
+			position:fixed;
+			top:-50%;
+			left:-50%;
+			width:200%;
+			height:200%;
+	}
+	#bgwrapper img {
+			position:absolute;
+			top:0;
+			left:0;
+			right:0;
+			bottom:0;
+			margin:auto;
+			min-width:50%;
+			min-height:50%;
+	}
+	
+	</style>
+	
+</head>
+<!--body style="background:url(img/imagedelay.jpg.php?i=bg-1280x800.jpg);"-->
+<body>
+
+
+	<div id="content">
+		<h1>BG Loader</h1>
+		<p>Bla blubb</p>
+	</div>
+	
+
+	<script src="jquery-1.6.4.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		docElement = document.documentElement;		
+				
+		var windowWidth = $(window).width();
+		
+		var bgImageUrl;
+		if (windowWidth>1280) {
+			bgImageUrl = 'img/imagedelay.jpg.php?i=bg-2560x1600.jpg';
+		} else if (windowWidth>1024) {
+			bgImageUrl = 'img/imagedelay.jpg.php?i=bg-1280x800.jpg';
+		} else if (windowWidth>512) {
+			bgImageUrl = 'img/imagedelay.jpg.php?i=bg-1024x640.jpg';
+		} else {
+			bgImageUrl = 'img/imagedelay.jpg.php?i=bg-512x320.jpg';
+		}
+		
+		// TODO: Bild je nach Auflösung wählen
+		heavyBgImage = new Image();
+		heavyBgImage.src = bgImageUrl;
+		heavyBgImage.onload = function(){
+				docElement.style.backgroundImage = 'url('+heavyBgImage.src+')';
+			};
+		
+	</script>
+</body>
+</html>

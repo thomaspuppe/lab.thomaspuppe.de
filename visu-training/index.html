@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">  
+    <title>PAGE TITLE</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../assets/css/normalize.css" rel="stylesheet" media="all">
+    <link href="styles.css" rel="stylesheet" media="all">   
+</head>
+<body>
+    <header role="banner">  
+        <h1>Main Title</h1>
+        <nav role="navigation">
+        
+        </nav>      
+    </header>
+
+
+    <div class="wrap" ng-app="myApp">
+        <main role="main">
+          <div>
+          Enter your name:
+          <input type="text" ng-model="name"></input>
+          </div>
+          <div>Hello {{name}}</div>        
+        </main>     
+    </div>
+    
+    <footer role="contentinfo">
+        <small>Copyright &copy; <time datetime="2014">2014</time></small>
+    </footer>
+    
+    
+    <!-- script src="../assets/js/jquery-2.1.0.min.js"></script -->
+    <script src="../assets/js/angular.1.2.14.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
