@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="app">
+<head>
+    <title>Angular.js Tutorial</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.3.1.1.min.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="../jasmine/lib/jasmine-2.0.0/jasmine.css">
+</head>
+    <body>
+
+    <h1>Angular.js Tutorial</h1>
+
+<h2><a href="http://blog.falafel.com/blogs/jesseliberty/jesse-liberty/2014/04/25/angular-part-5-adding-a-service">Angular Part 5 - Adding A Service</a></h2>
+
+<div ng-controller="expensesController as vm">
+    <table class="table table-bordered table-condensed">
+        <thead>
+        <tr>
+            <th>Expense</th>
+            <th>Description</th>
+             <th>Amount</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="e in vm.expenseItems">
+            <td>{{e.title}}</td>
+            <td>{{e.description}}</td>
+            <td>{{e.amount | currency}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+        <script src="../assets/js/angular.1.2.14.min.js"></script>
+
+        <script src="expenseItem.js"></script>
+        <script src="expense.js"></script>
+        <script src="expenseController.js"></script>
+
+
+        <script type="text/javascript" src="../jasmine/lib/jasmine-2.0.0/jasmine.js"></script>
+        <script type="text/javascript" src="../jasmine/lib/jasmine-2.0.0/jasmine-html.js"></script>
+        <script type="text/javascript" src="../jasmine/lib/jasmine-2.0.0/boot.js"></script>
+
+        <script src="expensesControllerSpec.js"></script>
+        
+    </body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="">
+<head>
+    <title>Angular.js Tutorial</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.3.1.1.min.css" media="all" />
+
+</head>
+    <body>
+
+    <h1>Angular.js Tutorial</h1>
+
+<hr>
+        <h2><a href="http://blog.falafel.com/blogs/jesseliberty/jesse-liberty/2014/03/16/creating-your-first-angular-program">Creating your first Angular program</a></h2>
+
+<hr>
+        <h3>Simple Data Binding</h3>
+        <label>Message</label>
+        <input type="text" ng-model="message" />
+        {{ message }}
+
+
+<hr ng-init="books = [
+      {title: 'War and Peace', author: 'Tolstoy', price: 19.95},
+      {title: 'As I Lay Dying', author: 'Faulkner', price: 15.95},
+      {title: 'Anatham', author: 'Stephenson', price: 11.95}]">
+        <h3>Adding Data</h3>
+        <table class="table table-bordered table-condensed">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="book in books">
+                    <td>{{book.title}}</td>
+                    <td>{{book.author}}</td>
+                    <td>{{book.price | currency}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+<hr>
+        <h3>Filters</h3>
+        <label>Filter</label>
+        <input type="text" ng-model="myFilter" />
+        {{ myFilter }}
+
+        <ul ng-repeat="book in books | filter:myFilter">
+            <li>{{book.title}} ({{book.author}})</li>
+        </ul>
+
+
+
+        <script src="../assets/js/angular.1.2.14.min.js"></script>
+    </body>
+</html>
