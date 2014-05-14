@@ -1,0 +1,2 @@
+- http://codekata.com/
+- Implement the password validator for http://kottke.org/12/06/the-worlds-worst-password-requirements-list
