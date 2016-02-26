@@ -87,20 +87,6 @@ function findAlcoholInMenuItem($menuItem) {
     return false;
 }
 
-function findParmesanInMenuItem($menuItem) {
-    foreach($menuItem as $key => $value){
-        if ( stristr( $value, 'Lasagne' ) || 
-        	stristr( $value, 'Tortellini' ) || 
-        	stristr( $value, 'Pasta' ) || 
-        	(stristr( $value, 'Spaghetti' ) && !stristr( $value, 'Spaghettipuffer' )) || 
-        	stristr( $value, 'Gnocchi tre colori' )
-        ){
-            return true;
-        }
-    }
-    return false;
-}
-
 function formatMenu($menuItem) {
 
  	return
@@ -128,10 +114,6 @@ Blockspring::define(function ($request, $response) {
         $responseText = getIntro($lunchDate) . "\n";
         $responseText.= formatMenu($menuItem);
         $responseText.= "\n\n" . getEnding(findAlcoholInMenuItem($menuItem));
-
-        if ( findParmesanInMenuItem($menuItem) ) {
-        	$responseText.= "\n\nPS: sieht aus als gäbe es Parmesan, @marco!";
-        }
         
         $response->addOutput('text', $responseText);
     }
