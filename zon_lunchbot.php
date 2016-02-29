@@ -89,8 +89,8 @@ function findAlcoholInMenuItem($menuItem) {
 
 function formatMenu($menuItem) {
 
-    $searchArray = array("ﬂ", "‰", "ˆ", "¸");
-    $replaceArray = array("ß", "ä", "ö", "ü");
+    $searchArray = array("ﬂ", "‰", "ˆ", "¸", "ƒ", "Í");
+    $replaceArray = array("ß", "ä", "ö", "ü", "Ä", "e");
 
     $menuString = 
         "- " . $menuItem['E1'] . "\n".
