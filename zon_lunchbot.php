@@ -29,7 +29,7 @@ function makeArrayFromMenuString($menuString) {
 
     $menuLines = explode("\n", $menuString);
     foreach ($menuLines as $menuLine) {
-     	$menuCols = explode(";", $menuLine);
+        $menuCols = explode(";", $menuLine);
         
         if (is_array($menuCols) && count($menuCols)==6) {
             $menuLineArray = Array(
@@ -89,13 +89,18 @@ function findAlcoholInMenuItem($menuItem) {
 
 function formatMenu($menuItem) {
 
- 	return
-		"- " . $menuItem['E1'] . "\n".
-		"- " . $menuItem['E2'] . "\n".
-		"- " . $menuItem['E3'] . "\n".
+    $searchArray = array("ﬂ", "‰", "ˆ", "¸");
+    $replaceArray = array("ß", "ä", "ö", "ü");
+
+    $menuString = 
+        "- " . $menuItem['E1'] . "\n".
+        "- " . $menuItem['E2'] . "\n".
+        "- " . $menuItem['E3'] . "\n".
         "und zum Nachtisch gibt es: \n".
-		"- " . $menuItem['N1'] . "\n".
-		"- " . $menuItem['N2'];
+        "- " . $menuItem['N1'] . "\n".
+        "- " . $menuItem['N2'];
+
+    return str_replace($searchArray, $replaceArray, $menuString);
 }
 
 # pass your function into Blockspring::define. tells blockspring what function to run.
@@ -119,5 +124,5 @@ Blockspring::define(function ($request, $response) {
     }
 
     # return the output.
-	$response->end();
+    $response->end();
 });
