@@ -13,6 +13,6 @@ function getTextBetweenTags($string, $tagname) {
 
 $wholeHtmlString = fetchOriginalPage();
 $excuseString = getTextBetweenTags($wholeHtmlString, 'a');
-$response = array('text' => $excuseString);
+$response = array('response_type'=> 'in_channel', 'text' => $excuseString);
 
 echo json_encode($response);
