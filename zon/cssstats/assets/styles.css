@@ -2,3 +2,8 @@
 	height: 500px;
 	width: 1000px;
 }
+
+.path{
+	stroke-width: 0.5px;
+	stroke: blue;
+}

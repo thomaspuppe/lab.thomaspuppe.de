@@ -1,0 +1,1 @@
+curl "http://www.zeit.de/static/2.[0-97]/css/web.site/screen.css" -o "./screen_v2.#1.css" --retry 5 --retry-delay 1

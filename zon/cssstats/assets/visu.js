@@ -14,15 +14,32 @@ var vis = d3.select("#visu"),
     yScale = d3
     	.scaleLinear()
     	.range([HEIGHT - MARGINS.top, MARGINS.bottom]),
+    y2Scale = d3
+      .scaleLinear()
+      .range([HEIGHT - MARGINS.top, MARGINS.bottom]),
     xAxis,
-    yAxis;
+    yAxis,
+    y2Axis;
+
+var getNameFromFilename = function(filename) {
+  // OPTIMIZE
+  return filename.split('_').slice(-1)[0].replace(/.css/i, '').replace(/v/i, '');
+}
 
 var lineGen = d3.line()
   .x(function(d) {
-    return xScale(d.filename.split('_').slice(-1)[0]);
+    return xScale(getNameFromFilename(d.filename));
   })
   .y(function(d) {
     return yScale(d.size);
+  });
+
+var line2Gen = d3.line()
+  .x(function(d) {
+    return xScale(getNameFromFilename(d.filename));
+  })
+  .y(function(d) {
+    return y2Scale(d.selectors.total);
   });
 
 /*
@@ -48,38 +65,45 @@ d3.json('stats.json', function(error, data) {
     var rangeCount = 0;
     var rangeWidth = Math.floor((WIDTH - MARGINS.right)/data.length);
     data.forEach(function(item) {
-        allVersions.push(item.filename);
+        allVersions.push(getNameFromFilename(item.filename));
         allVersionsRange.push(MARGINS.left + rangeCount*rangeWidth);
         rangeCount++;
     });
 
     xScale.domain(allVersions)
         .range(allVersionsRange),
-    yScale.domain([d3.min(data, function(d) {
-            return d.size;
-        }), d3.max(data, function(d) {
+    yScale.domain([0, d3.max(data, function(d) {
             return d.size;
         })]),
     xAxis = d3.axisBottom().scale(xScale),
-    yAxis = d3.axisLeft().scale(yScale);
+    yAxis = d3.axisLeft().scale(yScale),
+    y2Scale.domain([0, d3.max(data, function(d) {
+            return d.selectors.total;
+        })]),
+    y2Axis = d3.axisRight().scale(y2Scale);
 
-    console.log('after axis');
 
 	vis.append("svg:g")
 		.attr("transform", "translate(0," + (HEIGHT - MARGINS.bottom) + ")")
 		.call(xAxis);
+
 	vis.append("svg:g")
 		.attr("transform", "translate(" + (MARGINS.left) + ",0)")
 	    .call(yAxis);
 
-	console.log('after append');
+  vis.append("svg:g")
+    .attr("transform", "translate(" + (WIDTH - MARGINS.right) + ",0)")
+      .call(y2Axis);
 
     vis.append('svg:path')
         .attr('d', lineGen(data))
-        .attr('stroke', 'blue')
-        .attr('stroke-width', 2)
+        .attr('class', 'path')
         .attr('fill', 'none');
 
-    console.log('after append2');
+    vis.append('svg:path')
+        .attr('d', line2Gen(data))
+        .attr('class', 'path')
+        .attr('fill', 'none');
+
 
 });
