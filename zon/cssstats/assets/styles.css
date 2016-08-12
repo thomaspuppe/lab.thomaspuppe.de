@@ -4,6 +4,23 @@
 }
 
 .path{
+	fill: none;
 	stroke-width: 0.5px;
-	stroke: blue;
+	stroke: steelblue;
+}
+
+.path--red{
+	stroke-width: 0.5px;
+	stroke: red;
+}
+
+
+#spark, #spark2 {
+	border-left: 1px pink solid;
+	height: 100px;
+	width: 1000px;
+}
+
+.sparkcircle {
+	fill: red;
 }
